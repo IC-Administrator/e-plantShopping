@@ -243,10 +243,12 @@ function ProductList() {
     setShowCart(true); // Set showCart to true when cart icon is clicked
 };
 const handleAddToCart = (plant) => {
+    // Convert cost string to number by removing '$' and converting to float
+    const costNumber = parseFloat(plant.cost.replace('$', ''));
     const newItem = {
         ...plant,
         quantity: 1,
-        cost: plant.cost
+        cost: costNumber
     };
     dispatch(addItem(newItem));
     setAddedToCart(prev => ({
