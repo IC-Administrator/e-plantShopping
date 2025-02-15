@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import ProductList from './ProductList';
 import './App.css';
 import AboutUs from './AboutUs';
+import CheckoutPage from './CheckoutPage';
 
 function App() {
   
@@ -35,6 +36,7 @@ function App() {
       <div className={`product-list-container ${showProductList ? 'visible' : ''}`}>
         <ProductList />
       </div>
+      {window.location.pathname === '/checkout' && <CheckoutPage />}
     </div>
   );
 }
