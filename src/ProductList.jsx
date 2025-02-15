@@ -240,6 +240,19 @@ function ProductList() {
     e.preventDefault();
     setShowCart(true); // Set showCart to true when cart icon is clicked
 };
+const handleAddToCart = (plant) => {
+    const newItem = {
+        ...plant,
+        quantity: 1,
+        cost: plant.cost
+    };
+    dispatch(addItem(newItem));
+    setAddedToCart(prev => ({
+        ...prev,
+        [plant.name]: true
+    }));
+};
+
 const handlePlantsClick = (e) => {
     e.preventDefault();
     setShowPlants(true); // Set showAboutUs to true when "About Us" link is clicked
@@ -285,18 +298,7 @@ const handlePlantsClick = (e) => {
                             <p className="product-price">{plant.cost}</p>
                             <button 
                                 className="product-button"
-                                onClick={() => {
-                                    const newItem = {
-                                        ...plant,
-                                        quantity: 1,
-                                        cost: plant.cost
-                                    };
-                                    dispatch(addItem(newItem));
-                                    setAddedToCart(prev => ({
-                                        ...prev,
-                                        [plant.name]: true
-                                    }));
-                                }}
+                                onClick={() => handleAddToCart(plant)}
                                 disabled={addedToCart[plant.name]}
                             >
                                 {addedToCart[plant.name] ? 'Added to Cart' : 'Add to Cart'}
