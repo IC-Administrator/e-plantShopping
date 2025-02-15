@@ -27,8 +27,7 @@ const CartItem = ({ onContinueShopping }) => {
 
   const handleCheckoutShopping = (e) => {
     e.preventDefault();
-    window.location.hash = '/checkout';
-    window.location.reload();
+    alert('Checkout functionality will be implemented soon!');
   };
 
   const handleIncrement = (item) => {
