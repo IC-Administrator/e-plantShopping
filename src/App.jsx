@@ -36,7 +36,7 @@ function App() {
       <div className={`product-list-container ${showProductList ? 'visible' : ''}`}>
         <ProductList />
       </div>
-      {window.location.pathname === '/e-plantShopping/checkout' && <CheckoutPage />}
+      {window.location.hash === '#checkout' && <CheckoutPage />}
     </div>
   );
 }

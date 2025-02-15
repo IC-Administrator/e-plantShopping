@@ -26,7 +26,7 @@ const CartItem = ({ onContinueShopping }) => {
   };
 
   const handleCheckoutShopping = () => {
-    window.location.href = '/e-plantShopping/checkout';
+    window.location.hash = '#checkout';
   };
 
   const handleIncrement = (item) => {
