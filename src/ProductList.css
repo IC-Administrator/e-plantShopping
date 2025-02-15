@@ -41,11 +41,29 @@ body {
 
 /* Product Grid */
 .product-grid {
-    display:flex;
+    display: flex;
     flex-direction: column;
     width: 100vw;
     align-items: center;
     justify-content: center;
+    padding: 20px;
+}
+
+.category-section {
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+.category-title {
+    text-align: center;
+    color: #4CAF50;
+    font-size: 2em;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #4CAF50;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
 }
 .product-list {
     display: flex;
