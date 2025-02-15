@@ -54,8 +54,11 @@ const CartItem = ({ onContinueShopping }) => {
 
   // Calculate total cost based on quantity for an item
   const calculateTotalCost = (item) => {
-    const cost = parseFloat(item.cost.replace('$', ''));
-    return (cost * item.quantity).toFixed(2);
+    // Extract numeric value from cost string (removes '$' symbol)
+    const cost = parseFloat(item.cost.substring(1));
+    // Calculate subtotal by multiplying unit price by quantity
+    const subtotal = cost * item.quantity;
+    return subtotal.toFixed(2); // Format to 2 decimal places
   };
 
   return (
