@@ -5,7 +5,7 @@ import './ProductList.css'
 import CartItem from './CartItem';
 function ProductList() {
     const [showCart, setShowCart] = useState(false);
-    const [showPlants, setShowPlants] = useState(false);
+    const [showPlants, setShowPlants] = useState(true);
     const [addedToCart, setAddedToCart] = useState({});
     const dispatch = useDispatch();
     const cartItems = useSelector(state => state.cart.items);
@@ -240,7 +240,8 @@ function ProductList() {
    }
    const handleCartClick = (e) => {
     e.preventDefault();
-    setShowCart(true); // Set showCart to true when cart icon is clicked
+    setShowCart(true);
+    setShowPlants(false); // Hide plants when showing cart
 };
 const handleAddToCart = (plant) => {
     // Convert cost string to number by removing '$' and converting to float
@@ -299,7 +300,7 @@ const handlePlantsClick = (e) => {
                 </div>
             </div>
         </div>
-        {!showCart? (
+        {!showCart && showPlants ? (
         <div className="product-grid">
             <div className="plantname_heading">
                 <h1 className="plant_heading">Our Plants Collection</h1>
