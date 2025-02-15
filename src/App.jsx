@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import ProductList from './ProductList';
 import './App.css';
 import AboutUs from './AboutUs';
-import CheckoutPage from './CheckoutPage';
+import DummyCheckout from './DummyCheckout';
 
 function App() {
   
@@ -34,9 +34,12 @@ function App() {
 
       </div>
       <div className={`product-list-container ${showProductList ? 'visible' : ''}`}>
-        <ProductList />
+        {window.location.hash === '#/checkout' ? (
+          <DummyCheckout />
+        ) : (
+          <ProductList />
+        )}
       </div>
-      {window.location.hash === '#checkout' && <CheckoutPage />}
     </div>
   );
 }

@@ -26,8 +26,7 @@ const CartItem = ({ onContinueShopping }) => {
   };
 
   const handleCheckoutShopping = () => {
-    window.location.hash = '#checkout';
-    window.location.reload(); // Force reload to trigger the checkout page render
+    window.location.href = '#/checkout';
   };
 
   const handleIncrement = (item) => {
