@@ -20,7 +20,9 @@ const CartItem = ({ onContinueShopping }) => {
 
   const handleContinueShopping = (e) => {
     e.preventDefault();
-    onContinueShopping(e);
+    if (onContinueShopping) {
+      onContinueShopping(e);
+    }
   };
 
   const handleIncrement = (item) => {
