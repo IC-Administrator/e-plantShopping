@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import ProductList from './ProductList';
 import './App.css';
 import AboutUs from './AboutUs';
-import DummyCheckout from './DummyCheckout';
 
 function App() {
   
@@ -34,13 +33,7 @@ function App() {
 
       </div>
       <div className={`product-list-container ${showProductList ? 'visible' : ''}`}>
-        {window.location.hash === '#/checkout' ? (
-          <DummyCheckout />
-        ) : window.location.hash === '' ? (
-          <ProductList />
-        ) : (
-          <ProductList />
-        )}
+        <ProductList />
       </div>
     </div>
   );
