@@ -25,8 +25,10 @@ const CartItem = ({ onContinueShopping }) => {
     }
   };
 
-  const handleCheckoutShopping = () => {
-    window.location.href = '#/checkout';
+  const handleCheckoutShopping = (e) => {
+    e.preventDefault();
+    window.location.hash = '/checkout';
+    window.location.reload();
   };
 
   const handleIncrement = (item) => {

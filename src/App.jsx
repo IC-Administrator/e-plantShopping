@@ -36,6 +36,8 @@ function App() {
       <div className={`product-list-container ${showProductList ? 'visible' : ''}`}>
         {window.location.hash === '#/checkout' ? (
           <DummyCheckout />
+        ) : window.location.hash === '' ? (
+          <ProductList />
         ) : (
           <ProductList />
         )}
