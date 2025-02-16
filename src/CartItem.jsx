@@ -20,10 +20,9 @@ const CartItem = ({ onContinueShopping }) => {
     }, 0).toFixed(2); // Start with 0 and format to 2 decimal places
   };
 
-  const handleContinueShopping = (e) => {
-    e.preventDefault();
+  const handleContinueShopping = () => {
     if (onContinueShopping) {
-      onContinueShopping(e);
+      onContinueShopping();
     }
   };
 
