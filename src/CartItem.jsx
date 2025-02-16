@@ -10,8 +10,10 @@ const CartItem = ({ onContinueShopping }) => {
   // Calculate total amount for all products in the cart
   const calculateTotalAmount = () => {
     return cart.reduce((total, item) => {
-      // Remove '$' and convert to float
-      const cost = parseFloat(item.cost.replace('$', ''));
+      // Handle both string and number cost formats
+      const cost = typeof item.cost === 'string' ? 
+        parseFloat(item.cost.replace('$', '')) : 
+        item.cost;
       // Multiply cost by quantity and add to total
       const itemTotal = cost * item.quantity;
       return total + itemTotal;
