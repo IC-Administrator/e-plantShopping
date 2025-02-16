@@ -9,27 +9,60 @@ const CartItem = ({ onContinueShopping }) => {
 
   // Calculate total amount for all products in the cart
   const calculateTotalAmount = () => {
- 
+    return cart.reduce((total, item) => {
+      // Handle both string and number cost formats
+      const cost = typeof item.cost === 'string' ? 
+        parseFloat(item.cost.replace('$', '')) : 
+        item.cost;
+      // Multiply cost by quantity and add to total
+      const itemTotal = cost * item.quantity;
+      return total + itemTotal;
+    }, 0).toFixed(2); // Start with 0 and format to 2 decimal places
   };
 
-  const handleContinueShopping = (e) => {
-   
+  const handleContinueShopping = () => {
+    if (onContinueShopping) {
+      onContinueShopping();
+    }
   };
 
-
+  const handleCheckoutShopping = (e) => {
+    e.preventDefault();
+    alert('Checkout functionality will be implemented soon!');
+  };
 
   const handleIncrement = (item) => {
+    dispatch(updateQuantity({ 
+      name: item.name, 
+      quantity: item.quantity + 1 
+    }));
   };
 
   const handleDecrement = (item) => {
-   
+    if (item.quantity > 1) {
+      dispatch(updateQuantity({ 
+        name: item.name, 
+        quantity: item.quantity - 1 
+      }));
+    } else {
+      dispatch(removeItem(item));
+    }
   };
 
   const handleRemove = (item) => {
+    // Dispatch removeItem action to delete the item from cart
+    dispatch(removeItem({ name: item.name }));
   };
 
   // Calculate total cost based on quantity for an item
   const calculateTotalCost = (item) => {
+    // Handle both string and number cost formats
+    const cost = typeof item.cost === 'string' ? 
+      parseFloat(item.cost.replace('$', '')) : 
+      item.cost;
+    // Calculate subtotal by multiplying unit price by quantity
+    const subtotal = cost * item.quantity;
+    return subtotal.toFixed(2); // Format to 2 decimal places
   };
 
   return (
@@ -41,7 +74,7 @@ const CartItem = ({ onContinueShopping }) => {
             <img className="cart-item-image" src={item.image} alt={item.name} />
             <div className="cart-item-details">
               <div className="cart-item-name">{item.name}</div>
-              <div className="cart-item-cost">{item.cost}</div>
+              <div className="cart-item-cost">${typeof item.cost === 'number' ? item.cost : item.cost.replace('$', '')}</div>
               <div className="cart-item-quantity">
                 <button className="cart-item-button cart-item-button-dec" onClick={() => handleDecrement(item)}>-</button>
                 <span className="cart-item-quantity-value">{item.quantity}</span>
@@ -57,7 +90,7 @@ const CartItem = ({ onContinueShopping }) => {
       <div className="continue_shopping_btn">
         <button className="get-started-button" onClick={(e) => handleContinueShopping(e)}>Continue Shopping</button>
         <br />
-        <button className="get-started-button1">Checkout</button>
+        <button className="get-started-button1" onClick={handleCheckoutShopping}>Checkout</button>
       </div>
     </div>
   );
